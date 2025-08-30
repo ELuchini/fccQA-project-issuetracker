@@ -12,6 +12,8 @@ const runner            = require('./test-runner');
 
 let app = express();
 
+let bdMockup = [];
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
@@ -37,7 +39,7 @@ app.route('/')
 fccTestingRoutes(app);
 
 //Routing for API 
-apiRoutes(app);  
+apiRoutes(app, bdMockup);  
     
 //404 Not Found Middleware
 app.use(function(req, res, next) {
